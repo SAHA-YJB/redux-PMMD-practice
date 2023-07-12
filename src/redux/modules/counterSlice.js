@@ -1,4 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+//이름, 함수
+export const __plusNumber = createAsyncThunk(
+  "ADD_NUMBER_WAIT",
+  (payload, thunkAPI) => {
+    //수행하고 싶은 동작
+    setTimeout(() => {
+      thunkAPI.dispatch(plusNumber(payload));
+    }, 3000);
+  }
+);
+export const __minusNumber = createAsyncThunk(
+  "ADD_NUMBER_WAIT",
+  (payload, thunkAPI) => {
+    //수행하고 싶은 동작
+    setTimeout(() => {
+      thunkAPI.dispatch(minusNumber(payload));
+    }, 3000);
+  }
+);
 
 const initState = {
   number: 0,

@@ -1,13 +1,13 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { plusNumber, minusNumber } from "./redux/modules/counter";
-import { multiplyNumber, divideNumber, RESET } from "./redux/modules/counter";
+import { multiplyNumber, divideNumber } from "./redux/modules/counterSlice";
 import { useState } from "react";
+import { __plusNumber, __minusNumber } from "./redux/modules/counterSlice";
 function App() {
   const [num, setNum] = useState("");
 
   const counterSelector = useSelector((state) => {
-    return state.counter;
+    return state.counterSlice;
   });
 
   const handlerInputChange = (e) => {
@@ -16,11 +16,12 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const plusNum = () => dispatch(plusNumber(num));
-  const minusNum = () => dispatch(minusNumber(num));
+  const plusNum = () => dispatch(__plusNumber(+num));
+  const minusNum = () => dispatch(__minusNumber(num));
   const multiplyNum = () => dispatch(multiplyNumber(num));
   const divideNum = () => dispatch(divideNumber(num));
   const reset = () => setNum(0);
+
   return (
     <div>
       <div>현재 숫자 : {counterSelector.number}</div>
